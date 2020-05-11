@@ -11,15 +11,20 @@ console.log(fifaData);
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
 
-const teamName = fifaData.filter((team) => {
-  return team["Home Team Name"];
+const finals = fifaData.filter((team) => {
+  return team["Stage"] === "Final" && team["Year"] === 2014;
 });
-console.log(teamName);
+console.log(finals[0]["Home Team Name"]);
+console.log(finals[0]["Away Team Name"]);
+console.log(finals[0]["Home Team Goals"]);
+console.log(finals[0]["Away Team Goals"]);
+console.log(finals[0]["Win conditions"]);
+console.log(finals);
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
 function getFinals(data) {
-  data.filter(function (item) {
-    return item["Stage" === "Final"];
+  return data.filter(function (item) {
+    return item["Stage"] === "Final";
   });
 }
 console.log(getFinals(fifaData));
@@ -65,22 +70,22 @@ Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
 function getCountryWins(data, teamInitials) {
-  let teamMatches = data.map(function(match){
+  let teamMatches = data.map(function (match) {
     if (match["Home Team Goals"] > match["Away Team Goals"]) {
-        return match["Home Team Initial"];
-      } else {
-        return match["Away Team Initials"];
-      }
-      })
-teamMatches.forEach(function(item) {
-    if (item === teamInitials ) {
-        count++;
+      return match["Home Team Initial"];
+    } else {
+      return match["Away Team Initials"];
     }
-})
-return `${teamInitials} has won ${count} games`;
+  });
+  teamMatches.forEach(function (item) {
+    if (item === teamInitials) {
+      count++;
+    }
+  });
+  return `${teamInitials} has won ${count} games`;
 }
 
-getCountryWins(fifaData, );
+getCountryWins(fifaData);
 
 /* Task 8: Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
 
@@ -100,20 +105,20 @@ badDefense();
 
 /* Task 10: Write a function called `getAverageGoals` that accepts a parameter `data` and returns the the average number of home team goals and away team goals scored per match (Hint: use .reduce and do this in 2 steps) */
 
-function getAverageGoals() {
-  let homeTeamGoals = data.map(function(item) {
-      return item["Home Team Goals"];
-  })
-  let AwayTeamGoals = data.map(function(item) {
-  return item["Home Team Goals"];
-}, 0)/ awayTeamGoals.length;
-let avgHome = homeTeamGoals.reduce(function(accumulator, currentValue) {
-    return accumulator + currentValue;
-    let avgHome = homeTeamGoals.reduce(function(accumulator, currentValue) {
-        return accumulator + currentValue;
-})
-return  avgHome avgAway;}
-getAverageGoals();
+// function getAverageGoals() {
+//   let homeTeamGoals = data.map(function(item) {
+//       return item["Home Team Goals"];
+//   })
+//   let AwayTeamGoals = data.map(function(item) {
+//   return item["Home Team Goals"];
+// }, 0)/ awayTeamGoals.length;
+// let avgHome = homeTeamGoals.reduce(function(accumulator, currentValue) {
+//     return accumulator + currentValue;
+//     let avgHome = homeTeamGoals.reduce(function(accumulator, currentValue) {
+//         return accumulator + currentValue;
+// })
+// return  avgHome avgAway;}
+// getAverageGoals();
 
 /// STRETCH 🥅 //
 
